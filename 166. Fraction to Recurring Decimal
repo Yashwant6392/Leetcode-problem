@@ -1,0 +1,40 @@
+        class Solution {
+public:
+    string fractionToDecimal(int numerator, int denominator) {
+        if(numerator==0)
+        {
+            return "0";
+        }
+        string s;
+        if((long long)numerator*(long long)denominator<0){
+            s+='-';
+        }
+        //positive value
+        long long num=llabs((long long)numerator);
+        long long den=llabs((long long)denominator);
+        s+=to_string(num/den);
+        long long rem=num%den;
+        if(rem==0)
+        {
+            return s;
+        }
+        s+=".";
+        unordered_map<int,int>mp;
+        // vector<char>vec(s.begin(),s.end());
+        while(rem!=0)
+        {
+            if(mp.count(rem)){
+                s.insert(mp[rem],"(");
+                s+=")";
+                break;
+            }
+            mp[rem]=s.size();
+            rem*=10;
+            int digit=rem/den;
+            s+=to_string(digit);
+            rem=rem%den;
+        }
+        return s;
+
+    }
+};
