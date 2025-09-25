@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void find(vector<int>& arr,int index,int target,int& count )
+    {
+        
+        if(index==arr.size())
+        {
+        if(target==0)
+            count+=1;
+            return;
+        }
+        find(arr,index+1,target-arr[index],count);
+
+        find(arr,index+1,target+arr[index],count);
+    }  
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int count=0;
+        find(nums,0,target,count);
+        return count;
+        
+    }
+};
