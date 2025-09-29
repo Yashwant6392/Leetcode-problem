@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        int n=nums1.size();
+        int m=nums2.size();
+        vector<int>ans;
+        set<int>a(nums1.begin(),nums1.end());
+        set<int>b(nums2.begin(),nums2.end());
+        for(int num:nums2)
+        {
+            if(a.count(num))
+            {
+                ans.push_back(num);
+                a.erase(num);
+            }
+        }
+        return ans;
+
+
+        
+        
+    }
+};
