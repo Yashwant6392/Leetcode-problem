@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int t[51][51];
+    int solution(vector<int>&arr,int i, int j)
+    {
+        if(j-i+1<3)
+        return 0;
+        if(t[i][j]!=-1)
+        {
+            return t[i][j];
+        }
+
+        int minimum=INT_MAX;
+        for(int k=i+1;k<j;k++ )
+        {
+            int ans=arr[i]*arr[j]*arr[k]+solution(arr,i,k)+solution(arr,k,j);
+            minimum=min(ans,minimum);
+
+        }
+        return t[i][j]=minimum;
+        
+    }
+    int minScoreTriangulation(vector<int>& values) {
+        int n=values.size();
+        memset(t,-1,sizeof(t));
+        
+        return solution(values,0,n-1);
+        
+        
+        
+    }
+};
